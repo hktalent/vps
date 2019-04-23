@@ -33,10 +33,8 @@ nohup /usr/bin/python /usr/local/bin/ssserver   --workers 5 -s 0.0.0.0  -p 443 -
 ### docker run kcp
 ```
 docker pull alpine:latest
-docker run -it  -v /tmp/.X11-unix:/tmp/.X11-unix --privileged --net=host -v /root/kcp:/kcp  -P --name=kcp cdf98d1859c1 /bin/sh
-# (ps:cdf98d1859c1 is
-docker images|grep alpine
-# your see)
+did=`docker images|grep alpine|grep latest|awk '{print $3}'`
+docker run -it  -v /tmp/.X11-unix:/tmp/.X11-unix --privileged --net=host -v /root/kcp:/kcp  -P --name=kcp $did /bin/sh
 
 # in your docker
 echo "ulimit -n 65535">>~/.bashrc 
@@ -49,8 +47,8 @@ net.core.wmem_default=26214400
 net.core.netdev_max_backlog=2048 // proportional to -rcvwnd
 EOT
 
-
-docker start 92507b990a7c;docker exec -it  92507b990a7c /bin/sh
+dcid=`docker ps -a |grep $did`
+docker start $dcid;docker exec -it  $dcid /bin/sh
 #（ps： 92507b990a7c is
 docker ps -a|grep kcp
 # your see)

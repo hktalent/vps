@@ -1,3 +1,4 @@
+yourPswd="$1"
 apt update;apt upgrade -yy
 apt install curl wget tmux git net-tools -yy
 bash -c "$(wget -qO- https://raw.githubusercontent.com/Jigsaw-Code/outline-server/master/src/server_manager/install_scripts/install_server.sh)"

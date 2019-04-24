@@ -1,5 +1,5 @@
 # vps
-one step create ups
+one step create vps
 
 ## update
 ```
